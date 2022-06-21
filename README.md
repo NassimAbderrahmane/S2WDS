@@ -1,33 +1,30 @@
 # SENTINEL2-FOREST-FIRES-DATASET
 
-## Dataset for On-board detection of forest fires using sentinel-2 multi-spectral satellite imagery
+## Dataset for on-board detection of forest fires using sentinel-2 multi-spectral satellite imagery
 
 <div id="top"></div>
 
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Table of contents</summary>
   <ol>
     <li>
-      <a href="#about-this-repository-">About This Repository</a>
+      <a href="#about-this-repository-">About this repository</a>
       <ul>
-        <li><a href="#built-with-">Built With</a></li>
+        <li><a href="#built-with-">Built with</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">Installation</a>
       <ul>
-        <li><a href="#installation-">Installation</a></li>
         <li><a href="#prerequisites">Prerequisites</a></li>
       </ul>
     </li>
     <li>
         <a href="#usage-">Usage</a>
         <ul>
-            <li><a href="#demo-running">Demo running</a></li>
+            <li><a href="#demo-running">Running the demonstration</a></li>
             <li><a href="#data_structure">Data structure</a></li>
         </ul>
     </li>
@@ -41,52 +38,49 @@
 
 <!-- ABOUT THE PROJECT -->
 
-## About This repository 💼
+## About this repository 💼
 
-This git repository contains a demonstration of active forest fire detection with a deep learning model. The demo
-consists of showing you how to load the model and make the inference on some sample images.
+This git repository contains a demonstration of an active forest fire detection using a deep learning neural network model. The demonstration
+consists of showing how to load the model and to make an inference on some sample images.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Built With 🧰
+### Built with 🧰
 
 * [Anaconda](https://www.anaconda.com/products/distribution)
 * [Python](https://www.python.org/)
-* [tensorflow](https://www.tensorflow.org/)
-* [skimage](https://scikit-image.org/)
-* [matplotlib](https://matplotlib.org/)
+* [Tensorflow](https://www.tensorflow.org/)
+* [Skimage](https://scikit-image.org/)
+* [Matplotlib](https://matplotlib.org/)
 * [NumPy](https://numpy.org/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
 <!-- GETTING STARTED -->
 
-## Getting Started
+## Installation
 
-This is an example of how you may give instructions on setting up your project locally. To get a local copy up and
-running follow these simple example steps.
+Follow these instructions to locally setup up your project:
 
-
-### Installation 🔩
-
-1. Clone the repo
-
+1. Clone the repository : 
   ```sh
   git clone "https://github.com/hxfdanger/S2WDS.git"
   ```
-
-### Prerequisites
-
-Create conda env using S2WDS_env.yml file
-
+ 2. cd S2WDS/
+ 3. Create conda env using S2WDS_env.yml file : 
    ```sh
    conda env create -f S2WDS_env.yml
    ```
+ 4. Activate the conda environment : 
+   ```sh
+   conda activate S2WDS
+   ```
+ 5. Download the model **wildfire_Unet_MobileNetv3_model_40m.h5** from [__here__](https://ciar.irt-saintexupery.com/index.php/s/NDXrX4eRKzkIPWD/download?path=%2F&files=wildfire_Unet_MobileNetv3_model_40m.h5).
+ 6. Create a folder "model" in the project's directory S2WDS/.
+ 7. Mouve the **wildfire_Unet_MobileNetv3_model_40m.h5** file to S2WDS/model.
 
-🚨 To install the conda environment run
-this (to run conda command you have to install [Anaconda distribution](https://www.anaconda.com/products/distribution))
+🚨 To run conda commands, you have to install the [Anaconda distribution.](https://www.anaconda.com/products/distribution))
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -96,7 +90,7 @@ this (to run conda command you have to install [Anaconda distribution](https://w
 
 ## Usage 📒
 
-### 1. Demo running
+### 1. Running the demonstration
 
 The jupyter nootebook is not installed in the S2WDS env created by <a href="#prerequisites">S2WDS_env.yml </a> file.
 
@@ -113,10 +107,7 @@ jupyter notebook demo.ipynb
 
 - [**demo.ipynb**](https://github.com/hxfdanger/S2WDS/blob/prepare_demo/demo.ipynb) will use some function declared in
   utils.py
-- The model **wildfire_Unet_MobileNetv3_model_40m.h5** used in the demo does not exist in this repository. you can
-  download it [__here__](https://ciar.irt-saintexupery.com/index.php/s/NDXrX4eRKzkIPWD/download?path=%2F&files=wildfire_Unet_MobileNetv3_model_40m.h5). 
-  And you have to put it in a folder called model.
-- all images used for the demo are located in data folder. The structure of the data described
+- All images used for this demonstration are located in "data" folder. The structure of the data is described
   (<a href="#data_structure">bellow</a>).
 
 ### <div id="data_structure"> 2. Data structure</div>
@@ -142,29 +133,28 @@ jupyter notebook demo.ipynb
 ```
 **✍ NOTES:**
 
-- The data folder only contains some examples used to run the demo
-- **false_color** folder contains 3 images composed by [B12,B11,B04] (sentinel2 bands) used as the input of the model for inference. 
-- **RGB** contains 3 images corrsponding to false_color images composed by [B04,B03,B02] (sentinel2 bands) used only for visualizing.
-- **masks** folder contains 3 binary masks (**value : 0=no-fire; value : 1=fire**) corresponding to the images in the false_color folder.
+- The data folder only contains some examples used to run the demonstration.
+- **false_color** folder contains 3 images composed of [B12,B11,B04] (sentinel2 bands), which are used as the input of the model for performing inference. 
+- **RGB** contains 3 images corrsponding to false_color images composed of [B04,B03,B02] (sentinel2 bands), which are used only for visualization.
+- **masks** folder contains 3 binary masks (**value : 0=no-fire; value : 1=fire**) corresponding to the images that are located in the false_color folder.
 - Image_distribution folder contains 3 files :
-  - train.txt : (empty) 
-  - val.txt : (empty)
-  - test.txt : contains the name of 3 images used for the inference
-- To download all the data ([link](https://ciar.irt-saintexupery.com/index.php/s/NDXrX4eRKzkIPWD))
-- For more information about the data ([link]())
+  - train.txt : (empty), 
+  - val.txt : (empty),
+  - test.txt : contains the name of 3 images that are used for the inference.
+- To download all the data, use this ([link](https://ciar.irt-saintexupery.com/index.php/s/NDXrX4eRKzkIPWD))
+- For more information about the data, see ([link]()).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+<!-- LICENCE -->
 
-<!-- LICENSE -->
-
-## License 📑
+## Licence 📑
 
 
-Distributed under the Attribution 4.0 International (CC BY 4.0) License. 
+Distributed under the Attribution 4.0 International (CC BY 4.0) Licence. 
 
-Contains modified Copernicus Sentinel data [2016-2020] processed by Sentinel Hub
+Contains modified Copernicus Sentinel data [2016-2020] processed by Sentinel Hub.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -180,7 +170,7 @@ Contains modified Copernicus Sentinel data [2016-2020] processed by Sentinel Hub
 * [Adrien GIRARD 📧](mailto:adrien.girard@irt-saintexupery.com)
 
 
-Project Link: [https://github.com/hxfdanger/S2WDS/](https://github.com/hxfdanger/S2WDS/)
+Project link: [https://github.com/hxfdanger/S2WDS/](https://github.com/hxfdanger/S2WDS/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
